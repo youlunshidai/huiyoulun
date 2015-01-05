@@ -1,0 +1,160 @@
+API文档
+
++++++++++++++++++++++++++++++++++++
+1. 接口测试服务器地址
+	http://117.121.25.228:1338
+
++++++++++++++++++++++++++++++++++++
+2. 搜索产品
+
+	URL: http://117.121.25.228:1338/product/getlist?type=2&page=1&max=5&startDate=2015-02&order=price
+
+	搜索参数(所有参数都不是必需的)：
+	type: 产品类型，值=1->单船票，值=2->团队游产品，默认搜索全部类型
+	page: 数据翻页的页码，从1开始，如果没有参数，默认为1
+	max: 最多查询多少条数据，默认为10个
+	startDate: 查询出发日期，年+月，默认搜索全部日期
+	order: 排序， 值=price -> 按价格从低到高排序, 值=startDate -> 按出发日期排序, 默认按产品发布日期排序
+
+	返回搜索到的产品总数及产品列表
+	"productFoundTotal": 46,          <- 产品总数
+    "productList":                    <- 产品列表, 类型json数组
+      [
+        {
+            "id": 310,                <- 产品id
+            "productTitle": "2月12日大西洋号4晚5天日韩游", <- 产品标题
+            "productType": 2,          <- 产品类型, 1:单船票, 2：团队游产品
+            "startingPrice": 3699,     <- 起价
+            "startDate": "2015-2-12",  <- 出发日期
+            "durationDays": 5,         <- 旅程天数5天
+            "durationNights": 4,       <- 旅程天数4晚
+            "duration": "5天4晚",       <- 5天4晚
+            "startLocation": "上海",    <- 出发城市
+            "route": "上海-济州-福冈-航海日-上海",    <- 路线
+            "shipName": "大西洋号",      <- 船名
+            "shipRating": "四星",       <- 星级, 如果没有则为null
+            "shipCompany": "歌诗达邮轮", <- 船公司
+            "cruiseArea": "日韩"        <- 航区
+        },
+        ...
+      ]
+
+    注意：如果发生系统错误，返回 {error: 错误信息}
+
++++++++++++++++++++++++++++++++++++
+3. 产品详情
+
+	URL: http://localhost:1339/product/getdetail?productId=310
+
+	参数(必需的)：	productId 产品ID
+
+	返回产品详细数据, 类型json, 结构:
+      {
+        "product": {}, 		        <- 产品基本数据
+        "prices": [                 <- （数组）产品价格数据，舱房类型、价格、数量
+            {
+              "cabinType":"内舱房",   <- 舱房种类
+              "startingPrice": 3699, <- 起价
+              "cabins":[]            <- (数组)舱房类型、价格、数量等
+            }
+          ],
+        "travelSchedule": []	     <- （数组）行程
+      }
+
+    注意：如果发生系统错误或没有找到相关产品，返回 {error: 错误信息}
+
+	返回值详细说明:
+      {
+        "product":
+          {
+            "id": 310,                            <- 产品id
+            "title": "2月12日大西洋号4晚5天日韩游",   <- 产品标题
+            "type": 2,                            <- 产品种类， 1->单船票, 2->团队游
+            "productNumber": "74-15-AT0212",      <- 产品编号
+            "startDate": "2015-2-12",             <- 出发日期
+            "days": 5,                            <- 行程天数
+            "nights": 4,                          <- 行程晚数
+            "visaApplicationUntil": "2015-1-05",  <- 签证截至日期
+            "visaComment": "请于预订后7个工作日内递交签证材料..",             <- 签证说明
+            "excursion": "A线：【济州】汉拿树木园+新罗免税店...\r\nB线：...",  <- 岸上游
+            "startLocation": "上海",               <- 出发城市
+            "cruiseArea": "日韩"                   <- 航区
+            "images": [                           <- 图片, 数组。图片大小根据服务器设置, 暂定为在图片url后面加后缀, 比如小图的网址url+'!small'
+                  {
+                    "type": "ship",               <- 图片类型: 邮轮图片
+                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012.jpg"  <- 图片网址
+                  },
+                  ...
+                  {
+                    "type": "culinary",           <- 图片类型: 餐饮图片
+                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012R001.jpg"
+                  },
+                  ...
+                  {
+                    "type": "entertainment",       <- 图片类型: 娱乐设施图片
+                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012E001.jpg"
+                  },
+                  ...
+            ]
+          },
+
+        "prices": [
+          {
+            "cabinType": "内舱房",              <- 舱房种类
+            "startingPrice": 3699,             <- 起价
+            "cabins": [
+               {
+                "posId": 2332,                 <- 该舱房价格的id，用于预订
+                "productId": 310,              <- 所属产品id
+                "cabinName": "标准内舱双人房",    <- 舱房类型名称
+                "decks": "1F/2F/4F/5F/6F",     <- 甲板层, 可能为NULL
+                "size": "16-21平方米",          <- 舱房面积, 可能为NULL
+                "facility": "有两张可转换为一张大床的单人床，带淋浴的私人浴室...",             <- 舱房设施介绍, 可能为NULL
+                "imageUrl": "https://www.upyun.com/huiyoulun/ships/V02010C001.jpg",    <- 舱房图片地址
+                "checkInMax": 2,               <- 最大入住人数
+                "price": 3699,                 <- 第1/2人价格
+                "price2": 0,                   <- 第3/4人价格
+                "priceChild": 0,               <- 儿童价格
+                "amount": 10,                  <- 舱房数量
+                "tip": null,                   <- 小费
+                "comment": null                <- 价格说明
+               },
+               {
+                 "posId": 2333,
+                 "productId": 310,
+                 "cabinName": "高级内舱双人房",
+                 "decks": "1F/2F/4F/5F/6F/7F/8F",
+                 "size": "16-21平方米",
+                 "facility": "有两张可转换为一张大床的单人床，壁橱空间相当大，一个带淋浴的私人浴室，以及一个书桌，梳妆台，交互式电视，恒温空调，直拨电话，吹风机，迷你酒吧，私人保险箱，24小时客房服务。",
+                 "imageUrl": "https://www.upyun.com/huiyoulun/ships/V02010C002.jpg",
+                 "checkInMax": 2,
+                 "price": 3899,
+                 "price2": 0,
+                 "priceChild": 0,
+                 "amount": 10,
+                 "tip": null,
+                 "comment": null
+                },
+                ...
+             ]
+          },
+          ...
+        ],
+
+        "travelSchedule": [
+          {
+            "dayNumber": 1,					<- 行程第几天
+            "location": "上海",				<- 到达/出发城市或地点
+            "departureTime": "00:00:00",	<- 出发时间
+            "arrivalTime": "17:00:00",		<- 抵达时间
+            "description": "今日邮轮预计于北京时间17点启航离港，开始完美的海上之旅...",	<- 日程描述
+            "breakfast": "不含",				<- 早餐
+            "lunch": "不含",					<- 午餐
+            "dinner": "邮轮",				<- 晚餐
+            "overnightStay": "邮轮"			<- 夜宿
+          },
+          ...
+        ]
+      }
+
++++++++++++++++++++++++++++++++++++
