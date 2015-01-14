@@ -72,8 +72,15 @@ API文档
             "type": 2,                            <- 产品种类， 1->单船票, 2->团队游
             "productNumber": "74-15-AT0212",      <- 产品编号
             "startDate": "2015-2-12",             <- 出发日期
-            "days": 5,                            <- 行程天数
-            "nights": 4,                          <- 行程晚数
+            "durationDays": 5,
+            "durationNights": 4,
+            "startLocation": "上海",
+            "route": "上海-济州-福冈-航海日-上海",
+            "shipName": "大西洋号",
+            "shipRating": "四星",
+            "shipCompany": "歌诗达邮轮",
+            "shipCompanyLogo": "http://localhost:1339/images/data/shipcompanylogos/V02.png",
+            "cruiseArea": "日韩",
             "visaApplicationUntil": "2015-1-05",  <- 签证截至日期
             "visaComment": "请于预订后7个工作日内递交签证材料..",             <- 签证说明
             "excursion": "A线：【济州】汉拿树木园+新罗免税店...\r\nB线：...",  <- 岸上游
@@ -102,15 +109,15 @@ API文档
           {
             "cabinType": "内舱房",              <- 舱房种类
             "startingPrice": 3699,             <- 起价
+            "decks": "1F/2F/4F/5F/6F",     <- 甲板层, 可能为NULL
+            "size": "16-21平方米",          <- 舱房面积, 可能为NULL
+            "facility": "有两张可转换为一张大床的单人床，带淋浴的私人浴室...",             <- 舱房设施介绍, 可能为NULL
+            "imageUrl": "https://www.upyun.com/huiyoulun/ships/V02010C001.jpg",    <- 舱房图片地址
             "cabins": [
                {
                 "posId": 2332,                 <- 该舱房价格的id，用于预订
                 "productId": 310,              <- 所属产品id
                 "cabinName": "标准内舱双人房",    <- 舱房类型名称
-                "decks": "1F/2F/4F/5F/6F",     <- 甲板层, 可能为NULL
-                "size": "16-21平方米",          <- 舱房面积, 可能为NULL
-                "facility": "有两张可转换为一张大床的单人床，带淋浴的私人浴室...",             <- 舱房设施介绍, 可能为NULL
-                "imageUrl": "https://www.upyun.com/huiyoulun/ships/V02010C001.jpg",    <- 舱房图片地址
                 "checkInMax": 2,               <- 最大入住人数
                 "price": 3699,                 <- 第1/2人价格
                 "price2": 0,                   <- 第3/4人价格
