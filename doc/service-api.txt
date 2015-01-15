@@ -51,11 +51,18 @@ API文档
 	返回产品详细数据, 类型json, 结构:
       {
         "product": {}, 		        <- 产品基本数据
-        "prices": [                 <- （数组）产品价格数据，舱房类型、价格、数量
+        "images" : []               <- 邮轮相关图片
+        "entertainment" : []        <- 娱乐设施
+        "culinary" : []             <- 餐饮设施
+        "cabins": [                 <- （数组）产品价格数据，舱房类型、价格、数量
             {
               "cabinType":"内舱房",   <- 舱房种类
               "startingPrice": 3699, <- 起价
-              "cabins":[]            <- (数组)舱房类型、价格、数量等
+              "decks": "6F/7F/8F/9F/10F",     <- 楼层
+              "size": "15平方米",              <- 舱房面积
+              "facility": "两张单人床（可改成大床），独立卫浴空间...",     <- 设施
+              "imageUrl": "http://.../images/data/cabin/V01001C001_lg.jpg",
+              "categories":[]            <- (数组)舱房类型、价格、数量等
             }
           ],
         "travelSchedule": []	     <- （数组）行程
@@ -74,38 +81,56 @@ API文档
             "startDate": "2015-2-12",             <- 出发日期
             "durationDays": 5,
             "durationNights": 4,
-            "startLocation": "上海",
-            "route": "上海-济州-福冈-航海日-上海",
-            "shipName": "大西洋号",
-            "shipRating": "四星",
-            "shipCompany": "歌诗达邮轮",
-            "shipCompanyLogo": "http://localhost:1339/images/data/shipcompanylogos/V02.png",
-            "cruiseArea": "日韩",
+            "startLocation": "上海",              <- 出发城市
+            "route": "上海-济州-福冈-航海日-上海",   <- 行程路线
+            "shipName": "大西洋号",                <- 邮轮名称
+            "shipRating": "四星",                 <- 邮轮星级
+            "shipCompany": "歌诗达邮轮",           <- 邮轮公司
+            "shipCompanyLogo": "http://.../images/data/shipcompanylogo/V02.png", <- 邮轮公司logo
+            "cruiseArea": "日韩",                 <- 航区
             "visaApplicationUntil": "2015-1-05",  <- 签证截至日期
             "visaComment": "请于预订后7个工作日内递交签证材料..",             <- 签证说明
             "excursion": "A线：【济州】汉拿树木园+新罗免税店...\r\nB线：...",  <- 岸上游
-            "startLocation": "上海",               <- 出发城市
-            "cruiseArea": "日韩"                   <- 航区
-            "images": [                           <- 图片, 数组。图片大小根据服务器设置, 暂定为在图片url后面加后缀, 比如小图的网址url+'!small'
+            }
+        "images": [                           <- 图片, 数组。图片大小根据服务器设置, 暂定为在图片url后面加后缀, 比如小图的网址url+'!small'
                   {
                     "type": "ship",               <- 图片类型: 邮轮图片
-                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012.jpg"  <- 图片网址
+                    "url": "http://.../cruiseship/V02012.jpg"  <- 图片网址
                   },
                   ...
                   {
                     "type": "culinary",           <- 图片类型: 餐饮图片
-                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012R001.jpg"
+                    "url": "http://.../cruiseship/V02012R001.jpg"
                   },
                   ...
                   {
                     "type": "entertainment",       <- 图片类型: 娱乐设施图片
-                    "url": "http://room2.b0.upaiyun.com/cruiseship/V02012E001.jpg"
+                    "url": "http://.../cruiseship/V02012E001.jpg"
                   },
                   ...
             ]
           },
-
-        "prices": [
+        "entertainment": [      <- 娱乐设施
+        {
+          "name": "珊瑚大剧院",
+          "description": "音乐剧\n拉斯维加斯激情之夜\n冰上表演\n时装表演\n游戏节目\n来宾才艺表演\n喜剧专场",
+          "imgUrl": "http://localhost:1339/images/data/entertainment/V01004E001_lg.jpg"
+        },
+        ...
+        ],
+        "culinary": [           <- 餐饮
+       {
+         "name": "牛排烧烤餐厅",        <- 餐厅名称
+         "type": 意大利,               <- 餐厅特色
+         "fees": "30美元/人（包括小费）,饮料需要按酒水牌上的价格另外支付",   <- 费用说明
+         "reservation": "需要预约，建议预订时或上船的第一天就进行预订",     <- 预订说明
+         "openTime": "18：00—22：00",                               <- 开放时间
+         "clothing": "我们建议穿商务休闲装，...穿鸡尾酒会礼服",            <- 着装要求
+         "imgUrl": "http://.../images/data/culinary/V01002R002_lg.jpg"  <- 餐厅图片
+       },
+       ...
+       ],
+        "cabins": [
           {
             "cabinType": "内舱房",              <- 舱房种类
             "startingPrice": 3699,             <- 起价
@@ -113,7 +138,7 @@ API文档
             "size": "16-21平方米",          <- 舱房面积, 可能为NULL
             "facility": "有两张可转换为一张大床的单人床，带淋浴的私人浴室...",             <- 舱房设施介绍, 可能为NULL
             "imageUrl": "https://www.upyun.com/huiyoulun/ships/V02010C001.jpg",    <- 舱房图片地址
-            "cabins": [
+            "categories": [
                {
                 "posId": 2332,                 <- 该舱房价格的id，用于预订
                 "productId": 310,              <- 所属产品id
