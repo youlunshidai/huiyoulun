@@ -106,7 +106,7 @@ API文档
                   {
                     "type": "entertainment",       <- 图片类型: 娱乐设施图片
                     "url": "http://.../cruiseship/V02012E001.jpg"
-                  },
+                  },/
                   ...
             ]
           },
@@ -189,4 +189,68 @@ API文档
         ]
       }
 
++++++++++++++++++++++++++++++++++++
+4. 费用说明
+
+    URL: http://localhost:1339/product/getfees?productId=250
+
+    参数(必需的)：	productId 产品ID
+
+    返回产品详细数据, 类型json, 结构:
+    {
+      "fees": {
+        "includedFees": [       <- 包含的费用
+          {
+            "cruiseTicketFeeComment": "邮轮免费餐厅用餐，邮轮免费娱乐活动、表演等" <- 船票费用说明
+          },
+          {
+            "portTaxFee": 0,             <- 港务费(金额)
+            "portTaxComment": ""         <- 港务费说明
+          },
+          {
+            "tipComment": ""            <- 小费说明
+          },
+          {
+            "visaFee": 0,                <- 签证费(金额)
+            "visaFeeComment": "新加坡、泰国签证费；*（泰国个人旅游签...续费）" <- 签证费说明
+          },
+          {
+            "guideFee": 0,               <- 领队派遣费(金额)
+            "guideFeeComment": ""        <- 领队派遣费说明
+          },
+          {
+            "mealOnBoardFeeComment": ""     <- 邮轮餐厅费用说明
+          },
+          {
+            "transferFeeComment": "国际间往返机票及税务"   <- 出发地至港口交通费说明
+          },
+          {
+            "insuranceFeeComment": "送：旅游意外保险"     <- 旅游保险费用说明
+          },
+          {
+            "feeNotMentionedComment": "行程中所列的船前船后观光及景点门票" <- 未提及的其他费用说明
+          }
+        ],
+        "excludedFees": [       <- 不包含的费用
+          {
+            "excursionFee": 0,                            <- 岸上观光费(金额)
+            "excursionFeeComment": "港口的岸上观光费用"      <- 岸上观光费说明
+          },
+          {
+            "entertainmentFeeComment": ""                 <- 邮轮免费娱乐活动说明
+          },
+          {
+            "passportFeeComment": ""                      <- 护照费说明
+          },
+          {
+            "singleRoomFeeComment": ""                    <- 邮轮单人房差价费用说明
+          },
+          {
+            "selfConsumptionComment": ""                  <- 邮轮上私人消费费用说明
+          }
+        ]
+      }
+    }
+
+    注意：如果发生系统错误返回 {error: 错误信息}
 +++++++++++++++++++++++++++++++++++
