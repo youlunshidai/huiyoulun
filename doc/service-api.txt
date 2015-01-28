@@ -378,6 +378,11 @@ API文档
 8. 登录帐户
 
     URL: https://xxxhost/services/authuser
+
+    参数(必须):
+        loginName(荟邮系统的用户邮箱地址或手机号),
+        password
+
     返回json
     {
       "id" : 12,                     <- 用户id
