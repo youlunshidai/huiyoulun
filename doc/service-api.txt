@@ -380,6 +380,7 @@ API文档
     URL: https://xxxhost/services/authuser
     返回json
     {
+      "id" : 12,                     <- 用户id
       "name": "XXX",                 <- 用户名
       "company": "XXX国旅",           <- 公司简称
       "department": "邮轮部",          <- 部门
