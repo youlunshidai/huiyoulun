@@ -202,52 +202,66 @@ API文档
       "fees": {
         "includedFees": [       <- 包含的费用
           {
-            "cruiseTicketFeeComment": "邮轮免费餐厅用餐，邮轮免费娱乐活动、表演等" <- 船票费用说明
+            name:"船票费用",
+            comment: "邮轮免费餐厅用餐，邮轮免费娱乐活动、表演等" <- 船票费用说明
           },
           {
-            "portTaxFee": 0,             <- 港务费(金额)
-            "portTaxComment": ""         <- 港务费说明
+            name:"港务费",
+            fee: 0,             <- 港务费(金额)
+            comment: ""         <- 港务费说明
           },
           {
-            "tipComment": ""            <- 小费说明
+            name:"小费",
+            comment: ""            <- 小费说明
           },
           {
-            "visaFee": 0,                <- 签证费(金额)
-            "visaFeeComment": "新加坡、泰国签证费；*（泰国个人旅游签...续费）" <- 签证费说明
+            name:"签证费",
+            fee: 0,                <- 签证费(金额)
+            comment: "新加坡、泰国签证费；*（泰国个人旅游签...续费）" <- 签证费说明
           },
           {
-            "guideFee": 0,               <- 领队派遣费(金额)
-            "guideFeeComment": ""        <- 领队派遣费说明
+            name: "领队派遣费"
+            fee: 0,               <- 领队派遣费(金额)
+            comment: ""        <- 领队派遣费说明
           },
           {
-            "mealOnBoardFeeComment": ""     <- 邮轮餐厅费用说明
+            name: "邮轮餐厅费用",
+            comment: ""     <- 邮轮餐厅费用说明
           },
           {
-            "transferFeeComment": "国际间往返机票及税务"   <- 出发地至港口交通费说明
+            name: "出发地至港口交通费",
+            comment: "国际间往返机票及税务"   <- 出发地至港口交通费说明
           },
           {
-            "insuranceFeeComment": "送：旅游意外保险"     <- 旅游保险费用说明
+            name: "旅游保险费用",
+            comment: "送：旅游意外保险"     <- 旅游保险费用说明
           },
           {
-            "feeNotMentionedComment": "行程中所列的船前船后观光及景点门票" <- 未提及的其他费用说明
+            name: "其他费用",
+            comment: "行程中所列的船前船后观光及景点门票" <- 其他费用说明
           }
         ],
         "excludedFees": [       <- 不包含的费用
           {
-            "excursionFee": 0,                            <- 岸上观光费(金额)
-            "excursionFeeComment": "港口的岸上观光费用"      <- 岸上观光费说明
+            name: "岸上观光费",
+            fee: 0,                            <- 岸上观光费(金额)
+            comment: "港口的岸上观光费用"      <- 岸上观光费说明
           },
           {
-            "entertainmentFeeComment": ""                 <- 邮轮免费娱乐活动说明
+            name: "邮轮免费娱乐活动",
+            comment: ""                 <- 邮轮免费娱乐活动说明
           },
           {
-            "passportFeeComment": ""                      <- 护照费说明
+            name: "护照费",
+            comment: ""                      <- 护照费说明
           },
           {
-            "singleRoomFeeComment": ""                    <- 邮轮单人房差价费用说明
+            name: "邮轮单人房差价费用",
+            comment: ""                    <- 邮轮单人房差价费用说明
           },
           {
-            "selfConsumptionComment": ""                  <- 邮轮上私人消费费用说明
+            name: "邮轮上私人消费费用",
+            comment: ""                  <- 邮轮上私人消费费用说明
           }
         ]
       }
