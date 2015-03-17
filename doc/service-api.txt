@@ -7,7 +7,7 @@ API文档
 +++++++++++++++++++++++++++++++++++
 2. 搜索产品
 
-	URL: http://localhost:1339/product/getlist?type=2&page=1&max=5&startDate=2015-02&order=price
+	URL: http://localhost:1339/product/getlist?type=2&page=1&max=5&startDate=2015-02&order=price&recommendedOnly=false
 
 	搜索参数(所有参数都不是必需的)：
 	type: 产品类型，值=1->单船票，值=2->团队游产品，默认搜索全部类型
@@ -15,6 +15,7 @@ API文档
 	max: 最多查询多少条数据，默认为10个
 	startDate: 查询出发日期，年+月，默认搜索全部日期
 	order: 排序， 值=price -> 按价格从低到高排序, 值=startDate -> 按出发日期排序, 默认按产品发布日期排序
+	recommendedOnly: 特推产品, true -> 仅选择特推产品
 
 	返回搜索到的产品总数及产品列表
 	"productFoundTotal": 46,          <- 产品总数
@@ -35,6 +36,10 @@ API文档
             "shipRating": "四星",       <- 星级, 如果没有则为null
             "shipCompany": "歌诗达邮轮", <- 船公司
             "cruiseArea": "日韩"        <- 航区
+            ####### 如果参数里有recommendedOnly, 附加以下数据 ########
+            "isSpecial": 1,            <- 特推产品
+            "isEarlyBooking": 0,       <- 早订优惠产品
+            "isCheap": 0               <- 特惠产品
         },
         ...
       ]
