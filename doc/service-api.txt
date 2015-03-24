@@ -394,13 +394,30 @@ API文档
     ]
 
 +++++++++++++++++++++++++++++++
-8. 登录帐户
+8. 绑定微信帐户
+    URL: https://xxxhost/services/bindWeChat
+    参数(必须):
+            loginName(荟邮系统的用户邮箱地址或手机号)
+            password
+            openId
+
+        返回json
+        {
+          "id" : 12,                     <- 用户id
+          "name": "XXX",                 <- 用户名
+          "company": "XXX国旅",           <- 公司简称
+          "department": "邮轮部",          <- 部门
+          "mobilePhone": "17649571936"    <- 手机号
+        }
+
+9. 登录帐户
 
     URL: https://xxxhost/services/authuser
 
     参数(必须):
-        loginName(荟邮系统的用户邮箱地址或手机号),
-        password
+        loginName(荟邮系统的用户邮箱地址或手机号) 和 password
+        或
+        openId
 
     返回json
     {
